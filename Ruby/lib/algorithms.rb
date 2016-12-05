@@ -4,7 +4,7 @@
 # The result is called a 'digital root'.
 # Do not use string conversion within your method.
 def digital_root(number)
-
+  number % 9
 end
 
 # Write a function that takes a message and an increment amount.
@@ -12,39 +12,66 @@ end
 # Assume lowercase and no punctuation.
 # Preserve spaces.
 def caesar_cipher(string, shift)
-
+  alphabet = ('a'..'z').to_a
+  result = ""
+  string.each_char { |char| char == ' ' ? result << ' ' :
+                     result << alphabet[((alphabet.index(char) + shift) % 26)] }
+  result
 end
 
 # Write a function that takes two strings.
 # Return the longest common substring.
 def common_substrings(string_one, string_two)
-
+  string_one, string_two = string_two, string_one if string_one.length > string_two.length
+  result = ""
+  (0...string_one.length).each do |i|
+    (i...string_two.length).each do |j|
+      if string_two.include?(string_one[i..j]) && string_one[i..j].length > result.length
+        result = string_one[i..j]
+      end
+    end
+  end
+  result
 end
 
 # Write a function that takes an array of integers and returns their sum.
 # Use recursion.
 def sum_rec(numbers)
-
+  return 0 if numbers.empty?
+  return numbers.first if numbers.size == 1
+  numbers.shift + sum_rec(numbers)
 end
 
 # Write a function that takes n, the length of the sequence.
 # Return the first n elements from the fibonnacci sequence as an array.
 def fibs(n)
-
+  return [0] if n == 1
+  return [0, 1] if n == 2
+  prev_fibs = fibs(n - 1)
+  next_fib = prev_fibs[-1] + prev_fibs[-2]
+  prev_fibs << next_fib
 end
 
 # Write a function that takes a string.
 # Return true if the string is a palindrome, otherwise return false.
 # It should take less time and memory than reversing the string.
 def is_palindrome?(string)
-
+  i = 0
+  while i < string.length / 2
+    return false if string[i] != string[string.length - 1 - i]
+    i += 1
+  end
+  true
 end
 
 # Write a method that takes a string as input.
 # It should return true if the input is a valid IPv4 address.
 # Valid IPs are anything between '0.0.0.0' and '255.255.255.255'.
 def valid_ip?(string)
-
+  string.split('.').each do |num|
+    return false if num.to_i < 0 || num.to_i > 255
+  end
+  true
 end
 
 # Implement the Folding Cipher.
@@ -277,5 +304,5 @@ end
 
 # Write a method that takes an array and returns all its permutations.
 def permutations(array)
-  
+
 end
