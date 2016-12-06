@@ -78,7 +78,13 @@ end
 # It folds the alphabet in half and uses the adjacent letter.
 # a -> z, b -> y, c -> x, m -> n, etc...
 def folding_cipher(string)
-
+  alpha = ('a'..'z').to_a
+  i = 0
+  while i < string.length
+    string[i] = alpha[26 - alpha.index(string[i]) - 1]
+    i += 1
+  end
+  string
 end
 
 # Write a method that finds all the unique substrings for a word.
