@@ -238,7 +238,12 @@ end
 # Tell me what number is missing?
 # How could you solve the problem in O(n), and also O(1) space?
 def sum_upon_sums(array)
-
+  n = array.size
+  total = (n * (n + 1)) / 2
+  array.each do |el|
+    total -= el
+  end
+  total
 end
 
 # Implement a stack with a max method that returns the maximum value.
