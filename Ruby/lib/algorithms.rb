@@ -104,14 +104,30 @@ end
 # You can solve this trivially in O(n**2) time by considering all subarrays.
 # Try to solve it in O(n) time with O(1) memory.
 def lcs(array)
-
+  max = 0
+  current = 0
+  array.each do |el|
+    current += el
+    max = current if current > max
+    current = 0 if current < 0
+  end
+  max
 end
 
 # Write a function that takes a year as a four digit integer.
 # Returns an array of the 10 closest subsequent silly years.
 # A silly year's first two digits plus the last two digits equal the middle two.
 def silly_years(year)
-
+  result = []
+  until result.size == 10
+    year += 1
+    string_year = year.to_s
+    first = string_year[0..1].to_i
+    middle = string_year[1..2].to_i
+    last = string_year[2..3].to_i
+    result << year if first + last == middle
+  end
+  result
 end
 
 # Take an array of integers, and integer k.
