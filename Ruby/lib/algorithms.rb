@@ -1,3 +1,4 @@
+require 'set'
 # Write a method that will sum the digits of a positive integer.
 # If it is greater than or equal to 10, sum the digits of the resulting number.
 # Keep repeating until there is only one digit in the result.
@@ -89,7 +90,14 @@ end
 
 # Write a method that finds all the unique substrings for a word.
 def uniq_subs(string)
-
+  set = Set.new()
+  string.chars.each_index do |i|
+    string.chars.each_index do |j|
+      next if j < i
+      set.add(string[i..j])
+    end
+  end
+  set.to_a
 end
 
 # Given an array of integers find the largest contiguous subsum.
