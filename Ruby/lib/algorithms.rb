@@ -151,7 +151,17 @@ end
 # Find the sum of numbers falling inside the rectangle.
 # Time complexity: O(number of rows * number of columns).
 def matrix_region_sum(matrix, top_left_coords, bottom_right_coords)
-
+  total = 0
+  i = top_left_coords[0]
+  while (i <= bottom_right_coords[0])
+    j = top_left_coords[1]
+    while j <= bottom_right_coords[1]
+      total += matrix[i][j]
+      j += 1
+    end
+    i += 1
+  end
+  total
 end
 
 # Implement Merge Sort
