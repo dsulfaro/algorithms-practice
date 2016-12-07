@@ -1,4 +1,5 @@
 require 'set'
+require 'byebug'
 # Write a method that will sum the digits of a positive integer.
 # If it is greater than or equal to 10, sum the digits of the resulting number.
 # Keep repeating until there is only one digit in the result.
@@ -136,7 +137,13 @@ end
 # Time complexity: O(n).
 # Return a set.
 def pair_sum(array, k)
-
+  seen = Set.new()
+  result = Set.new()
+  array.each do |el|
+    result << [el, k - el] if seen.include?(el)
+    seen.add(k - el)
+  end
+  result
 end
 
 # Take a matrix of integers and coordinates.

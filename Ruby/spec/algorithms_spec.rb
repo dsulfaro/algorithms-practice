@@ -188,7 +188,7 @@ describe 'can_win?' do
     expect(can_win?(array, 1)).to be_falsy
   end
 
-  it 'should return true if can win' do
+  it 'should return true if can win' do  letters
     array = [3, 1, 5, 7, 9, 2, 9, 0]
     expect(can_win?(array, 1)).to be_truthy
   end
