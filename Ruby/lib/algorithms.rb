@@ -209,12 +209,26 @@ end
 # Replace all the numbers with the product of all other numbers.
 # Do this in O(n) time without using division.
 def productify(array)
-
+  result = Array.new(array.length, 1)
+  prod1 = 1
+  (0..(array.length - 1)).each do |i|
+    result[i] *= prod1
+    prod1 *= array[i]
+  end
+  prod2 = 1
+  (array.length - 1).downto(0) do |j|
+    result[j] *= prod2
+    prod2 *= array[j]
+  end
+  result
 end
 
 # Write a function that takes an array and returns all of its subsets.
 def subsets(array)
-
+  return [[]] if array.empty?
+  prev = subsets(array[0..-2])
+  newer = prev.map { |el| el + [array.last] }
+  prev + newer
 end
 
 # Return the indices of the start/end of the longest palindrome in the string.
