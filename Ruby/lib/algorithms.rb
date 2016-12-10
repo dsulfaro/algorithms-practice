@@ -192,7 +192,17 @@ end
 # Implement binary search.
 # Return nil if the target isn't found.
 def binary_search(array, target)
-
+  return nil if array.empty?
+  mindex = array.length / 2
+  case target <=> array[mindex]
+  when -1
+    binary_search(array.take(mindex), target)
+  when 0
+    mindex
+  when 1
+    result = binary_search(array.drop(mindex + 1), target)
+    (result.nil?) ? nil : (mindex + 1) + result
+  end
 end
 
 # You are given a list of numbers in an array.
