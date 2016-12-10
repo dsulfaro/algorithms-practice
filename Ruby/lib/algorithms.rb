@@ -235,7 +235,19 @@ end
 # You could reverse the string and compare it to the original, but that is slow.
 # Instead, you should be able to solve the problem with O(1) memory.
 def longest_palindrome(string)
-
+  max = ""
+  idx = nil
+  string.chars.each_index do |i|
+    string.chars.each_index do |j|
+      next if j <= i
+      sub = string[i..j]
+      if (sub == sub.reverse && sub.length > max.length)
+        max = sub
+        idx = [i, j]
+      end
+    end
+  end
+  idx
 end
 
 # Given two arrays, find the intersection of both sets.
