@@ -255,7 +255,11 @@ end
 # Use sorting to solve in O(nlog(n)).
 # Next, improve this to O(n) time (maybe use a non-array datastructure).
 def fast_intersection(array_one, array_two)
-
+  set = Set.new();
+  array_one.each { |x| set.add(x) }
+  result = []
+  array_two.each { |y| result << y if set.include?(y) }
+  result
 end
 
 # Write a function that takes two arrays of integers
