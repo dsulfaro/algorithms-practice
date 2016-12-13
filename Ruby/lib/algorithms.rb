@@ -273,8 +273,11 @@ end
 # You are given an array and index.
 # Find if it's possible to reach 0 by starting at the index.
 # You can only move left or right by the distance found at array[index].
-def can_win?(array, index)
-
+def can_win?(arr, index = 0, seen = {})
+  return false if !index.between?(0, arr.length - 1) || seen[index]
+  return true if arr[index] == 0
+  seen[index] = true
+  can_win?(arr, index + arr[index], seen) || can_win?(arr, index - arr[index], seen)
 end
 
 # Assume an array of length n, containing the numbers 1..n in jumbled order.
