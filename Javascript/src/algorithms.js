@@ -180,7 +180,17 @@ Algorithms.pairSum = function (array, k) {
 // Find the sum of numbers falling inside the rectangle.
 // Time complexity: O(number of rows * number of columns).
 Algorithms.matrixRegionSum = function (matrix, topLeftCoords, bottomRightCoords) {
-
+  let total = 0;
+  let i = topLeftCoords[0];
+  while (i <= bottomRightCoords[0]) {
+    j = topLeftCoords[1];
+    while (j <= bottomRightCoords[1]) {
+      total += matrix[i][j];
+      j++;
+    }
+    i++;
+  }
+  return total;
 };
 
 })();
