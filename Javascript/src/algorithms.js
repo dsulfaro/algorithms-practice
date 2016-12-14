@@ -84,19 +84,43 @@ Algorithms.fibs = function (number) {
 // Write a function that takes a string and returns true if it's a palindrome, false if it's not.
 // Your solution should take less time and memory than rebuilding the string backward and comparing the two.
 Algorithms.isPalindrome = function (string) {
-
+  let i = 0;
+  let j = string.length - 1;
+  while (i !== j && i < j) {
+    if (string[i] !== string[j]) {
+      return false;
+    }
+    i++;
+    j--;
+  }
+  return true;
 };
 
 // Implement the Folding Cipher.
 // It folds the alphabet in half and uses the adjacent letter.
 // a <=> z, b <=> y, c <=> x, m <=> n.
 Algorithms.foldingCipher = function (string) {
-
+  let a = 'a'.charCodeAt(0);
+  let result = "";
+  for (let i = 0; i < string.length; ++i) {
+    let charCode = string.charCodeAt(i);
+    result += String.fromCharCode(charCode + 25 - (2 * (charCode - a)));
+  }
+  return result;
 };
 
 // Write a method that finds all the unique substrings for a word.
 Algorithms.uniqSubs = function (string) {
-
+  let unique = new Set();
+  let result = [];
+  let subs = this.getSubstrings(string);
+  subs.forEach(sub => {
+    if (!unique.has(sub)) {
+      unique.add(sub);
+      result.push(sub);
+    }
+  });
+  return result;
 };
 
 
@@ -104,13 +128,35 @@ Algorithms.uniqSubs = function (string) {
 // You can solve this trivially in O(n**2) time by considering all subarrays.
 // Try to solve it in O(n) time with O(1) memory.
 Algorithms.lcs = function (array) {
-
+  let max = array[0];
+  let current = 0;
+  for (let i = 0; i < array.length; ++i) {
+    current += array[i];
+    if (current > max) {
+      max = current;
+    }
+    if (current < 0) {
+      current = 0;
+    }
+  }
+  return max;
 };
 
 // Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:
 // the first two digits summed with the last two digits are equal to the middle two digits.
 Algorithms.sillyYears = function (number) {
-
+  let result = [];
+  while (result.length !== 10) {
+    number++;
+    let string_year = number.toString();
+    let first = parseInt(string_year[0] + string_year[1]);
+    let middle = parseInt(string_year[1] + string_year[2]);
+    let last = parseInt(string_year[2] + string_year[3]);
+    if (first + last === middle) {
+      result.push(number);
+    }
+  }
+  return result;
 };
 
 // Given an array of integers, return all pairs that sum up to a specified value k.
@@ -118,7 +164,15 @@ Algorithms.sillyYears = function (number) {
 // Time complexity: O(n).
 // Return an array.
 Algorithms.pairSum = function (array, k) {
-
+  let set = new Set();
+  let result = [];
+  array.forEach(x => {
+    if (set.has(k - x)) {
+      result.push([x, (k - x)])
+    }
+    set.add(k - x);
+  });
+  return result;
 };
 
 // Given a matrix of integers and coordinates of a rectangular region within the matrix.
