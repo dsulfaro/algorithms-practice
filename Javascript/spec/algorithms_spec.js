@@ -131,3 +131,32 @@ describe("matrixRegionSum", function() {
     expect(Algorithms.matrixRegionSum(matrix, topLeftCoords, bottomRightCoords)).toBe(36);
   });
 });
+
+describe("merge", function() {
+  it("should correctly merge two arrays", function() {
+    let arr1 = [1, 3];
+    let arr2 = [2, 4];
+    let result = [1, 2, 3, 4]
+    expect(Algorithms.merge(arr1, arr2)).toEqual(result);
+  });
+  it("can handle cases of uneven arrays", function() {
+    let arr1 = [5];
+    let arr2 = [4, 6];
+    let result = [4, 5, 6];
+    expect(Algorithms.merge(arr1, arr2)).toEqual(result);
+  });
+  it("handles cases with duplicates", function() {
+    let arr1 = [1, 2];
+    let arr2 = [2, 3];
+    let result = [1, 2, 2, 3];
+    expect(Algorithms.merge(arr1, arr2)).toEqual(result);
+  })
+});
+
+describe("merge_sort", function() {
+  it("should correctly sort an array", function() {
+    let shuffled = [4, 2, 1, 3, 5, 6];
+    let array = [1, 2, 3, 4, 5, 6];
+    expect(Algorithms.merge_sort(shuffled)).toEqual(array);
+  });
+});

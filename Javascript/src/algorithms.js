@@ -193,4 +193,29 @@ Algorithms.matrixRegionSum = function (matrix, topLeftCoords, bottomRightCoords)
   return total;
 };
 
+Algorithms.merge = function (left, right) {
+  let result = [];
+  while (left.length > 0 && right.length > 0) {
+    if (left[0] > right[0]) {
+      result.push(right.shift());
+    }
+    else {
+      result.push(left.shift());
+    }
+  }
+  result = result.concat(left.concat(right));
+  return result;
+};
+
+Algorithms.merge_sort = array => {
+  if (array.length <= 1) {
+    return array;
+  }
+  let middle = array.length / 2;
+  let left = array.slice(0, middle);
+  let right = array.slice(middle);
+  return Algorithms.merge(Algorithms.merge_sort(left), Algorithms.merge_sort(right));
+};
+
+
 })();
