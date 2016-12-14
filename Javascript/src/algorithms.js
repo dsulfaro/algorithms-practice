@@ -165,14 +165,15 @@ Algorithms.sillyYears = function (number) {
 // Return an array.
 Algorithms.pairSum = function (array, k) {
   let set = new Set();
-  let result = [];
+  let result = new Set();
   array.forEach(x => {
     if (set.has(k - x)) {
-      result.push([x, (k - x)])
+      result.add([x, (k - x)])
+      set.delete(k - x);
     }
-    set.add(k - x);
+    set.add(x);
   });
-  return result;
+  return Array.from(result);
 };
 
 // Given a matrix of integers and coordinates of a rectangular region within the matrix.
