@@ -16,23 +16,69 @@ Algorithms.digitalRoot = function (number) {
 // Assume lowercase and no punctuation.
 // Preserve spaces.
 Algorithms.caesarCipher = function (string, shift) {
-
+  let result = "";
+  for (let i = 0; i < string.length; ++i) {
+    let a = 'a'.charCodeAt(0);
+    let x = string.charCodeAt(i) - a;
+    x += shift;
+    x = x % 26;
+    x += a;
+    result += String.fromCharCode(x);
+  }
+  return result;
 };
+
+Algorithms.getSubstrings = str => {
+  let substrings = [];
+  for (let i = 0; i < str.length; ++i) {
+    let sub = "";
+    for (let j = i; j < str.length; ++j) {
+      sub += str[j];
+      substrings.push(sub);
+    }
+  }
+  return substrings;
+}
 
 // Write a function that takes two strings and returns the lenght of the longest common substring.
 Algorithms.commonSubstrings = function (stringOne, stringTwo) {
-
+  let sub1 = this.getSubstrings(stringOne);
+  let sub2 = this.getSubstrings(stringTwo);
+  let max = 0;
+  for (let i = 0; i < sub1.length; ++i) {
+    if (sub2.includes(sub1[i])) {
+      if (sub1[i].length > max) {
+        max = sub1[i].length;
+      }
+    }
+  }
+  return max;
 };
 
 // Write a function that takes an array of integers and returns their sum.
 // Use recursion.
 Algorithms.sumRec = function (numbers) {
-
+  if (numbers.length === 1) {
+    return numbers[0];
+  }
+  else {
+    return numbers.pop() + this.sumRec(numbers);
+  }
 };
 
 // Write a function which returns the first n elements from the fibonnacci sequence, given n.
 Algorithms.fibs = function (number) {
-
+  if (number === 1) {
+    return [0];
+  }
+  else if (number === 2) {
+    return [0, 1];
+  }
+  else {
+    let previous_fibs = this.fibs(number - 1);
+    let next_fib = previous_fibs[previous_fibs.length - 1] + previous_fibs[previous_fibs.length - 2]
+    return previous_fibs.concat(next_fib);
+  }
 };
 
 // Write a function that takes a string and returns true if it's a palindrome, false if it's not.
