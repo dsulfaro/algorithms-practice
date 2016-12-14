@@ -9,7 +9,7 @@ if(typeof Algorithms === "undefined") {
 // Keep repeating until there is only one digit in the result, called the "digital root".
 // Do not use string conversion within your method.
 Algorithms.digitalRoot = function (number) {
-
+  return number % 9;
 };
 
 // Write a function that takes a message and an increment amount and outputs the same letters shifted by that amount in the alphabet.
