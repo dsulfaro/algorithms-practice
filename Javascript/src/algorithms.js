@@ -227,14 +227,12 @@ Algorithms.binary_search = (array, target) => {
     else { return null; }
   }
 
-  let mid = array.length / 2;
-  alert(array[mid]);
-  alert(target);
+  let mid = Math.floor(array.length / 2);
   if (array[mid] === target) {
     return mid;
   }
   else if (array[mid] < target) {
-    let val = Algorithms.binary_search(array.slice(mid + 1), target);
+    let val = Algorithms.binary_search(array.slice(mid), target);
     if (val !== null) {
       return mid + val;
     }

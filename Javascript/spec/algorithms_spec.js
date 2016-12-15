@@ -166,13 +166,13 @@ describe("binary_search", function() {
   it("handles an easy search", function() {
     expect(Algorithms.binary_search(array, 3)).toBe(2);
   });
-  // it("handles the left correctly", function() {
-  //   expect(Algorithms.binary_search(array, 1)).toBe(0);
-  // });
-  // it("handles the right correctly", function() {
-  //   expect(Algorithms.binary_search(array, 4)).toBe(3);
-  // });
-  // it("handles a case where the number isn't there", function() {
-  //   expect(Algorithms.binary_search(array, 1000)).toBe(null);
-  // });
+  it("handles the left correctly", function() {
+    expect(Algorithms.binary_search(array, 1)).toBe(0);
+  });
+  it("handles the right correctly", function() {
+    expect(Algorithms.binary_search(array, 4)).toBe(3);
+  });
+  it("handles a case where the number isn't there", function() {
+    expect(Algorithms.binary_search(array, 1000)).toBe(null);
+  });
 });
