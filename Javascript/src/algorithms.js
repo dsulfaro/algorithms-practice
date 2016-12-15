@@ -218,15 +218,11 @@ Algorithms.merge_sort = array => {
 };
 
 Algorithms.binary_search = (array, target) => {
-
-
   if (array.length < 1) { return null; }
-
   if (array.length === 1) {
     if (array[0] === target) { return 0; }
     else { return null; }
   }
-
   let mid = Math.floor(array.length / 2);
   if (array[mid] === target) {
     return mid;
@@ -243,6 +239,22 @@ Algorithms.binary_search = (array, target) => {
   else {
     return Algorithms.binary_search(array.slice(0, mid), target);
   }
+};
+
+Algorithms.productify = array => {
+  let result = new Array();
+  for (let i = 0; i < array.length; ++i) { result.push(1); }
+  let prod1 = 1;
+  for (let i = 0; i < array.length; ++i) {
+    result[i] *= prod1;
+    prod1 *= array[i];
+  }
+  let prod2 = 1;
+  for (let i = array.length - 1; i >= 0; --i) {
+    result[i] *= prod2;
+    prod2 *= array[i];
+  }
+  return result;
 };
 
 

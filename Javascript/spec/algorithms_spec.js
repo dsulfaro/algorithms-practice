@@ -175,4 +175,12 @@ describe("binary_search", function() {
   it("handles a case where the number isn't there", function() {
     expect(Algorithms.binary_search(array, 1000)).toBe(null);
   });
+
+  describe("productify", function() {
+    let array = [1, 2, 3, 4];
+    it("returns an array with the correct values", function() {
+      expect(Algorithms.productify(array)).toEqual([24, 12, 8, 6]);
+    });
+  });
+  
 });
