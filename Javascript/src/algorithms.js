@@ -217,5 +217,35 @@ Algorithms.merge_sort = array => {
   return Algorithms.merge(Algorithms.merge_sort(left), Algorithms.merge_sort(right));
 };
 
+Algorithms.binary_search = (array, target) => {
+
+
+  if (array.length < 1) { return null; }
+
+  if (array.length === 1) {
+    if (array[0] === target) { return 0; }
+    else { return null; }
+  }
+
+  let mid = array.length / 2;
+  alert(array[mid]);
+  alert(target);
+  if (array[mid] === target) {
+    return mid;
+  }
+  else if (array[mid] < target) {
+    let val = Algorithms.binary_search(array.slice(mid + 1), target);
+    if (val !== null) {
+      return mid + val;
+    }
+    else {
+      return null;
+    }
+  }
+  else {
+    return Algorithms.binary_search(array.slice(0, mid), target);
+  }
+};
+
 
 })();
