@@ -259,7 +259,7 @@ Algorithms.productify = array => {
 
 Algorithms.subsets = array => {
   debugger;
-  if (array.length === 0) { return [[1]]; }
+  if (array.length === 0) { return [[]]; }
   let temp = array.slice();
   temp.pop();
   let prev_sets = Algorithms.subsets(temp);
