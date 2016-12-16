@@ -258,15 +258,16 @@ Algorithms.productify = array => {
 };
 
 Algorithms.subsets = array => {
-  debugger;
-  if (array.length === 0) { return [[]]; }
-  let temp = array.slice();
-  temp.pop();
-  let prev_sets = Algorithms.subsets(temp);
-  prev_sets = prev_sets.map(arr => {
-    arr.push(array[array.length - 1])
-  });
-  return array.concat(prev_sets);
+  // if (array.length === 0) { return [[]]; }
+  // let temp = array.slice();
+  // let last = temp.pop();
+  // let prev_sets = Algorithms.subsets(temp);
+  // let new_sets = [];
+  // for (let i = 0; i < prev_sets.length; ++i) {
+  //   let a = prev_sets[i].slice();
+  //   new_sets.push(a.push(last));
+  // }
+  // return prev_sets.concat([new_sets]);
 };
 
 

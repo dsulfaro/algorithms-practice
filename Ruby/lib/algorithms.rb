@@ -284,7 +284,7 @@ end
 # "Sort" this array in O(n) time.
 # Hint: You should be able to do this without looking at the input.
 def sort1(array)
-
+  (1..array.size).to_a
 end
 
 # Assume an array of length n with numbers in the range 1..N (N >= n).
