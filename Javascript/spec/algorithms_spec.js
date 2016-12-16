@@ -176,11 +176,26 @@ describe("binary_search", function() {
     expect(Algorithms.binary_search(array, 1000)).toBe(null);
   });
 
-  describe("productify", function() {
-    let array = [1, 2, 3, 4];
-    it("returns an array with the correct values", function() {
-      expect(Algorithms.productify(array)).toEqual([24, 12, 8, 6]);
-    });
+describe("productify", function() {
+  let array = [1, 2, 3, 4];
+  it("returns an array with the correct values", function() {
+    expect(Algorithms.productify(array)).toEqual([24, 12, 8, 6]);
   });
-  
+});
+
+describe("subsets", function() {
+  // it("handles an empty case", function() {
+  //   let array = [];
+  //   expect(Algorithms.subsets(array)).toEqual([[]]);
+  // });
+  it("handles a simple case", function() {
+    let array = [1];
+    expect(Algorithms.subsets(array)).toEqual([[], [1]]);
+  });
+  // it("correctly returns subsets", function() {
+  //   let array = [1, 2];
+  //   expect(Algorithms.subsets(array)).toEqual([], [1], [2], [1, 2]);
+  // });
+});
+
 });

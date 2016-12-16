@@ -257,5 +257,17 @@ Algorithms.productify = array => {
   return result;
 };
 
+Algorithms.subsets = array => {
+  debugger;
+  if (array.length === 0) { return [[1]]; }
+  let temp = array.slice();
+  temp.pop();
+  let prev_sets = Algorithms.subsets(temp);
+  prev_sets = prev_sets.map(arr => {
+    arr.push(array[array.length - 1])
+  });
+  return array.concat(prev_sets);
+};
+
 
 })();
