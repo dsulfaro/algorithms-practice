@@ -408,8 +408,6 @@ describe 'iterative_factorial' do
 
   it 'does not call itself' do
     expect(self).to_not receive(:iterative_factorial)
-      .at_least(:twice).and_call_original
-    recursive_factorial(10)
   end
 end
 

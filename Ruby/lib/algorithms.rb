@@ -399,17 +399,23 @@ end
 
 # Write a function that takes an integer and returns it in binary form.
 def binary(integer)
-
+  integer.to_s(2)
 end
 
 # Write a recursive function that takes a number and returns its factorial.
 def recursive_factorial(number)
-
+  return 1 if number <= 1
+  number * recursive_factorial(number - 1)
 end
 
 # Write an iterative function that takes a number and returns its factorial.
 def iterative_factorial(number)
-
+  total = 1
+  while number > 0
+    total *= number
+    number -= 1
+  end
+  total
 end
 
 # Write a method that takes an array and returns all its permutations.
