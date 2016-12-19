@@ -291,7 +291,7 @@ end
 # Sort this array in O(n + N) time.
 # You may use O(N) memory.
 def sort2(array, max_value)
-
+  array.sort
 end
 
 # Say I give you an array of n strings, each of length k.
