@@ -400,6 +400,43 @@ end
 # Last, use MinMaxStackQueue to solve the problem.
 class MinMaxStack
 
+    def initialize
+      @store = []
+      @max = []
+      @min = []
+    end
+
+    def length
+      @store.length
+    end
+
+    def push(val)
+      @store << val
+      if @max.empty?
+        @max << val
+      else
+        @max.last > val ? @max << @max.last : @max << val
+      end
+      if @min.empty?
+        @min << val
+      else
+        @min.last < val ? @min << @min.last : @min << val
+      end
+    end
+
+    def pop
+      @max.pop
+      @store.pop
+    end
+
+    def max
+      @max.last
+    end
+
+    def min
+      @min.last
+    end
+
 end
 
 class MinMaxStackQueue
