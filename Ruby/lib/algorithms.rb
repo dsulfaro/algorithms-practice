@@ -341,6 +341,28 @@ end
 # It should run in O(1) time.
 class MaxStack
 
+  def initialize
+    @store = []
+    @max = []
+  end
+
+  def push(val)
+    @store << val
+    if @max.empty?
+      @max << val
+    else
+      @max.last > val ? @max << @max.last : @max << val
+    end
+  end
+
+  def pop
+    @max.pop
+    @store.pop
+  end
+
+  def max
+    @max.last
+  end
 end
 
 # Implement a queue using stacks.
@@ -350,6 +372,22 @@ end
 # In terms of ammortized time, dequeue should be O(1).
 # Prove that your solution accomplishes this.
 class StackQueue
+
+  def initialize
+    @left = []
+    @right = []
+  end
+
+  def enqueue(val)
+    @left << val
+  end
+
+  def dequeue
+    until @left.empty?
+      @right << @left.pop
+    end
+    @right.pop
+  end
 
 end
 
@@ -420,5 +458,5 @@ end
 
 # Write a method that takes an array and returns all its permutations.
 def permutations(array)
-
+  return [1] if array.length == 1
 end
