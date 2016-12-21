@@ -371,24 +371,65 @@ end
 # Dequeue may be worst-case O(n).
 # In terms of ammortized time, dequeue should be O(1).
 # Prove that your solution accomplishes this.
-class StackQueue
+class MyStack
+  def initialize(store = [])
+    @store = store
+  end
 
+  def empty?
+    @store.empty?
+  end
+
+  def peek
+    @store.last
+  end
+
+  def pop
+    @store.pop
+  end
+
+  def push(val)
+    @store.push(val)
+  end
+
+  def size
+    @store.size
+  end
+end
+
+class StackQueue
   def initialize
-    @left = []
-    @right = []
+    @in_stack = MyStack.new
+    @out_stack = MyStack.new
+  end
+
+  def empty?
+    @in_stack.empty? && @out_stack.empty?
+  end
+
+  def size
+    @in_stack.size + @out_stack.size
   end
 
   def enqueue(val)
-    @left << val
+    # O(1)
+    @in_stack.push(val)
   end
 
   def dequeue
-    until @left.empty?
-      @right << @left.pop
-    end
-    @right.pop
+    queueify if @out_stack.empty?
+    # If we haven't already reversed the stack, this runs in O(n). However, we
+    # only have to do this once for every n dequeue operations, so it amortizes
+    # to O(1)
+
+    @out_stack.pop
   end
 
+  private
+  def queueify
+    # How do you turn a stack into a queue? Flip it upside down.
+    @out_stack.push(@in_stack.pop) until @in_stack.empty?
+  end
 end
 
 # Take an array, and a window size w.
@@ -399,52 +440,118 @@ end
 # Write a MinMaxStackQueue which tracks both the min and max.
 # Last, use MinMaxStackQueue to solve the problem.
 class MinMaxStack
+  def initialize
+    @store = MyStack.new
+  end
 
-    def initialize
-      @store = []
-      @max = []
-      @min = []
-    end
+  def length
+    @store.length
+  end
 
-    def length
-      @store.length
-    end
+  def empty?
+    @store.empty?
+  end
 
-    def push(val)
-      @store << val
-      if @max.empty?
-        @max << val
-      else
-        @max.last > val ? @max << @max.last : @max << val
-      end
-      if @min.empty?
-        @min << val
-      else
-        @min.last < val ? @min << @min.last : @min << val
-      end
-    end
+  def min
+    @store.peek[:min] unless empty?
+  end
 
-    def pop
-      @max.pop
-      @store.pop
-    end
+  def max
+    @store.peek[:max] unless empty?
+  end
 
-    def max
-      @max.last
-    end
+  def peek
+    @store.peek[:value] unless empty?
+  end
 
-    def min
-      @min.last
-    end
+  def pop
+    @store.pop[:value] unless empty?
+  end
 
+  def push(val)
+    # By using a little extra memory, we can get the max simply by peeking,
+    # which is O(1).
+    @store.push({
+      max: new_max(val),
+      min: new_min(val),
+      value: val
+    })
+  end
+
+  def size
+    @store.size
+  end
+
+  private
+
+  def new_max(val)
+    empty? ? val : [max, val].max
+  end
+
+  def new_min(val)
+    empty? ? val : [min, val].min
+  end
 end
 
 class MinMaxStackQueue
+  def initialize
+    @in_stack = MinMaxStack.new
+    @out_stack = MinMaxStack.new
+  end
 
+  def dequeue
+    queueify if @out_stack.empty?
+    @out_stack.pop
+  end
+
+  def enqueue(val)
+    @in_stack.push(val)
+  end
+
+  def length
+    @in_stack.length + @out_stack.length
+  end
+
+  def empty?
+    @in_stack.empty? && @out_stack.empty?
+  end
+
+  def max
+    # At most two operations; O(1)
+    maxes = []
+    maxes << @in_stack.max unless @in_stack.empty?
+    maxes << @out_stack.max unless @out_stack.empty?
+    maxes.max
+  end
+
+  def min
+    mins = []
+    mins << @in_stack.min unless @in_stack.empty?
+    mins << @out_stack.min unless @out_stack.empty?
+    mins.min
+  end
+
+  def size
+    @in_stack.size + @out_stack.size
+  end
+
+  private
+  def queueify
+    @out_stack.push(@in_stack.pop) until @in_stack.empty?
+  end
 end
 
 def windowed_max_range(array, w)
-
+  window = MinMaxStackQueue.new
+  w.times { |i| window.enqueue(array[i]) }
+  max = window.max - window.min
+  while w < array.length
+    window.dequeue
+    window.enqueue(array[w])
+    max = window.max - window.min if (window.max - window.min) > max
+    w += 1
+  end
+  max
 end
 
 # Suppose a hash representing a directory.
