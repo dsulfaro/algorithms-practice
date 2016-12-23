@@ -569,7 +569,7 @@ end
 # Given these two arrays, find which element is missing in the second array.
 # Do this in linear time with constant memory use.
 def find_missing_number(array_one, array_two)
-
+  array_one.inject(:+) - array_two.inject(:+)
 end
 
 # Create a function that takes three strings.
