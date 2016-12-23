@@ -561,7 +561,22 @@ end
 # Write a function that takes such a hash.
 # Return an array of strings with the path to each file in the hash.
 def file_list(hash)
-
+  result = []
+  hash.each do |k, v|
+    if v == true
+      result << k
+    else
+      temp = file_list(v)
+      if temp.class == Array
+        temp.each do |x|
+          result << k + '/' + x
+        end
+      else
+        result << k + '/' + temp
+      end
+    end
+  end
+  result
 end
 
 # Assume an array of non-negative integers.
