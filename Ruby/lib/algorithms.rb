@@ -322,7 +322,23 @@ end
 # The output describes the count of the elements in the input.
 
 def look_and_say(array)
-
+  result = []
+  i = 0
+  count = 0
+  current = array.first
+  byebug
+  while i < array.length
+    if current != array[i]
+      result << [count, current]
+      current = array[i]
+      count = 1
+    else
+      count += 1
+    end
+    i += 1
+  end
+  result << [count, current]
+  result
 end
 
 # I give you a scrambled list of n unique integers between 0 and n.
