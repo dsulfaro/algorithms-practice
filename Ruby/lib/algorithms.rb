@@ -591,7 +591,14 @@ end
 # Return whether the third is an interleaving of the first two.
 # Interleaving means it contains the same characters and preserves their order.
 def is_shuffle?(string_one, string_two, string_three)
-
+  return true if string_one.empty? && string_two.empty? && string_three.empty?
+  if string_one[0] == string_three[0]
+    is_shuffle?(string_one[1..-1], string_two, string_three[1..-1])
+  elsif string_two[0] == string_three[0]
+    is_shuffle?(string_one, string_two[1..-1], string_three[1..-1])
+  else
+    return false
+  end
 end
 
 # Write a function that takes an integer and returns it in binary form.
