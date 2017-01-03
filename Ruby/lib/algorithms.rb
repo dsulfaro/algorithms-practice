@@ -314,7 +314,19 @@ end
 # The order of non-zero elements does not matter.
 # Try to accomplish this in O(n) time and O(1) space.
 def move_zeros(array)
-
+  i = 0
+  j = array.length - 1
+  while i != j && i < j
+    while array[j] == 0 && j > i
+      j -= 1
+    end
+    if array[i] == 0
+      array[i], array[j] = array[j], array[i]
+      j -= 1
+    end
+    i += 1
+  end
+  array
 end
 
 # Implement the 'look and say' function.
@@ -326,7 +338,6 @@ def look_and_say(array)
   i = 0
   count = 0
   current = array.first
-  byebug
   while i < array.length
     if current != array[i]
       result << [count, current]
