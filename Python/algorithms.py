@@ -86,3 +86,15 @@ def lcs(l):
         if c < 0:
             c = 0
     return m
+
+def silly_years(year):
+    result = []
+    while len(result) != 10:
+        year = str(year)
+        first = year[0:2]
+        middle = year[1:3]
+        last = year[2:]
+        if int(first) + int(last) == int(middle):
+            result.append(int(year))
+        year = int(year) + 1
+    return result
