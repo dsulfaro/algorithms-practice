@@ -22,3 +22,9 @@ def common_substrings(s, t):
                 if (sub in t) and (len(sub) > len(result)):
                     result = sub
     return result
+
+def sum_rec(l):
+    if len(l) == 0:
+        return 0
+    else:
+        return l[0] + sum_rec(l[1:])
