@@ -28,3 +28,14 @@ def sum_rec(l):
         return 0
     else:
         return l[0] + sum_rec(l[1:])
+
+def fibs(n):
+    if n == 1:
+        return [0]
+    elif n == 2:
+        return [0, 1]
+    else:
+        prev_fibs = fibs(n - 1)
+        new_fib = prev_fibs[-1] + prev_fibs[-2]
+        prev_fibs.append(new_fib)
+        return prev_fibs
