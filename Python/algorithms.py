@@ -202,9 +202,25 @@ def longest_palindrome(str):
 def fast_intersection(arr1, arr2):
     seen = set()
     for el in arr1:
-        seen.add(el)
+        if type(el) == list:
+            seen.add(tuple(el))
+        else:
+            seen.add(el)
     result = []
     for el in arr2:
-        if el in seen:
-            result.append(el)
+        if type(el) == list:
+            if tuple(el) in seen:
+                result.append(el)
+        else:
+            if el in seen:
+                result.append(el)
     return result
+
+def common_subsets(arr1, arr2):
+    subs1 = tuple(subsets(arr1))
+    subs2 = tuple(subsets(arr2))
+    return fast_intersection(subs1, subs2)
+
+a = [1, 2]
+b = [1]
+print common_subsets(a, b)
