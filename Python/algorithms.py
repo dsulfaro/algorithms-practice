@@ -1,3 +1,5 @@
+import string
+
 def digital_root(number):
     return number % 9
 
@@ -55,3 +57,11 @@ def valid_ip(str):
         if int(c) < 0 or int(c) > 255:
             return False
     return True
+
+def folding_cipher(str):
+    result = ""
+    alpha = list(string.ascii_lowercase)
+    for i, c in enumerate(str):
+        idx = alpha.index(c)
+        result += alpha[26 - idx - 1]
+    return result
