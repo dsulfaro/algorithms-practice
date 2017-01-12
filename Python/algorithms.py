@@ -98,3 +98,13 @@ def silly_years(year):
             result.append(int(year))
         year = int(year) + 1
     return result
+
+def pair_sum(arr, k):
+    seen = set()
+    result = []
+    for x in arr:
+        if (k - x) in seen:
+            result.append([x, (k - x)])
+            seen.remove(k - x)
+        seen.add(x)
+    return result
