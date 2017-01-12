@@ -174,3 +174,16 @@ def productify(array):
         result[j] *= prod2
         prod2 *= array[j]
     return result
+
+def subsets(array):
+    if len(array) == 0:
+        return [[]]
+    else:
+        result = []
+        prev_subs = subsets(array[:-1])
+        for sub in prev_subs:
+            temp = sub[:]
+            sub.append(array[-1])
+            result.append(temp)
+            result.append(sub)
+        return result
