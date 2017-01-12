@@ -162,3 +162,15 @@ def binary_search(array, target):
             return -1
         else:
             return 1 + mid + ret
+
+def productify(array):
+    result = [1] * len(array)
+    prod1 = 1
+    for i, x in enumerate(array):
+        result[i] *= prod1
+        prod1 *= array[i]
+    prod2 = 1
+    for j, y in reversed(list(enumerate(array))):
+        result[j] *= prod2
+        prod2 *= array[j]
+    return result
