@@ -187,3 +187,14 @@ def subsets(array):
             result.append(temp)
             result.append(sub)
         return result
+
+def longest_palindrome(str):
+    max = ""
+    for i, ch in enumerate(str):
+        for j, c in enumerate(str):
+            if j < i:
+                continue
+            sub = str[i:j+1]
+            if is_palindrome(sub) and len(sub) > len(max):
+                max = sub
+    return max
