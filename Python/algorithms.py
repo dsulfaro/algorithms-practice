@@ -198,3 +198,13 @@ def longest_palindrome(str):
             if is_palindrome(sub) and len(sub) > len(max):
                 max = sub
     return max
+
+def fast_intersection(arr1, arr2):
+    seen = set()
+    for el in arr1:
+        seen.add(el)
+    result = []
+    for el in arr2:
+        if el in seen:
+            result.append(el)
+    return result
