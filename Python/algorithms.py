@@ -39,3 +39,6 @@ def fibs(n):
         new_fib = prev_fibs[-1] + prev_fibs[-2]
         prev_fibs.append(new_fib)
         return prev_fibs
+
+def is_palindrome(str):
+    return str == str[::-1]
