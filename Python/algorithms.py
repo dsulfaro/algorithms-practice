@@ -108,3 +108,14 @@ def pair_sum(arr, k):
             seen.remove(k - x)
         seen.add(x)
     return result
+
+def matrix_region_sum(matrix, top_left, bottom_right):
+    total = 0
+    i = top_left[0]
+    while i <= bottom_right[0]:
+        j = top_left[1]
+        while j <= bottom_right[1]:
+            total += matrix[i][j]
+            j += 1
+        i += 1
+    return total
