@@ -42,3 +42,16 @@ def fibs(n):
 
 def is_palindrome(str):
     return str == str[::-1]
+
+def valid_ip(str):
+    chars = str.split(".")
+    if len(chars) != 4:
+        return False
+    for c in chars:
+        try:
+            x = int(c)
+        except ValueError:
+            return False
+        if int(c) < 0 or int(c) > 255:
+            return False
+    return True
