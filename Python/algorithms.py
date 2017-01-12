@@ -65,3 +65,13 @@ def folding_cipher(str):
         idx = alpha.index(c)
         result += alpha[26 - idx - 1]
     return result
+
+def uniq_subs(str):
+    result = set()
+    for i, _ in enumerate(str):
+        for j, _ in enumerate(str):
+            if j < i:
+                continue
+            else:
+                result.add(str[i:j + 1])
+    return list(result)
