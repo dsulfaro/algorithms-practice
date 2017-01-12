@@ -119,3 +119,27 @@ def matrix_region_sum(matrix, top_left, bottom_right):
             j += 1
         i += 1
     return total
+
+def merge_sort(arr):
+    if len(arr) == 1:
+        return arr
+    mid = len(arr) / 2
+    left = arr[:mid]
+    right = arr[mid:]
+    return merge(merge_sort(left), merge_sort(right))
+
+def merge(left, right):
+    result = []
+    while len(left) > 0 and len(right) > 0:
+        if left[0] > right[0]:
+            result.append(right[0])
+            right = right[1:]
+        else:
+            result.append(left[0])
+            left = left[1:]
+    result += left
+    result += right
+    return  result
+
+a = [2, 1, 5, 3, 4]
+print merge_sort(a)
