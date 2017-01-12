@@ -141,5 +141,24 @@ def merge(left, right):
     result += right
     return  result
 
-a = [2, 1, 5, 3, 4]
-print merge_sort(a)
+def binary_search(array, target):
+    if len(array) == 0:
+        return -1
+    if len(array) == 1:
+        if array[0] == target:
+            return 0
+        else:
+            return -1
+    mid = len(array) / 2
+    left = array[:mid]
+    right = array[(mid + 1):]
+    if array[mid] == target:
+        return mid
+    elif array[mid] > target:
+        return binary_search(left, target)
+    else:
+        ret = binary_search(right, target)
+        if ret == -1:
+            return -1
+        else:
+            return 1 + mid + ret
