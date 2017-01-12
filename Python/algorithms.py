@@ -75,3 +75,14 @@ def uniq_subs(str):
             else:
                 result.add(str[i:j + 1])
     return list(result)
+
+def lcs(l):
+    m = 0
+    c = 0
+    for x in l:
+        c += x
+        if c > m:
+            m = c
+        if c < 0:
+            c = 0
+    return m
