@@ -286,3 +286,13 @@ def look_and_say(array):
     for group in groups:
         result.append([len(group), group[0]])
     return result
+
+def sum_upon_sums(array):
+    n = len(array)
+    summation = (n * (n + 1)) / 2
+    for el in array:
+        summation -= el
+    return summation
+
+a = [0, 2, 3]
+print sum_upon_sums(a)
