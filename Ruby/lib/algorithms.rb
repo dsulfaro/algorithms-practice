@@ -320,7 +320,14 @@ end
 # The chance of returning a given index will vary with the value of the element.
 # Probability of i should be the ith element divided by the sum of all elements.
 def weighted_random_index(array)
-
+  hash = {}
+  array.each_with_index { |el, i| hash[el] = i }
+  array.length.times do |el|
+    array[el].times do |val|
+      array << array[el]
+    end
+  end
+  hash[array.sample]
 end
 
 # Given an array, move all zeros to the end.
