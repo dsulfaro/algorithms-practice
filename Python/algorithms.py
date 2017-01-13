@@ -1,4 +1,5 @@
 import string
+import random
 
 def digital_root(number):
     return number % 9
@@ -244,3 +245,12 @@ def strings_sort(array, length):
             array.extend(section)
         length -= 1
     return array
+
+def weighted_random_index(array):
+    store = {}
+    for i, el in enumerate(array):
+        store[el] = i
+    for i in range(len(array)):
+        for j in range(array[i]):
+            array.append(array[i])
+    return store[random.choice(array)]
