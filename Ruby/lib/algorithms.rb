@@ -300,7 +300,20 @@ end
 # Hint: Do not compare any two strings.
 # All strings contain only lowercase letters without whitespace or punctuation.
 def sort3(array, length)
-
+  length -= 1
+  while length > -1
+    bins = []
+    26.times { |_| bins << [] }
+    array.each do |word|
+      bins[word[length].ord - 'a'.ord].push(word)
+    end
+    array = []
+    bins.each do |bin|
+      array.concat(bin)
+    end
+    length -= 1
+  end
+  array
 end
 
 # Given an array, write a function that will return a random index of the array.

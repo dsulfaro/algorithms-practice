@@ -244,5 +244,3 @@ def strings_sort(array, length):
             array.extend(section)
         length -= 1
     return array
-
-print strings_sort(["sat", "bad", "bat"], 3)
