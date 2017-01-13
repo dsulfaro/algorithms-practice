@@ -265,3 +265,24 @@ def move_zeros(array):
             array[i], array[j] = array[j], array[i]
         i += 1
     return array
+
+def group_array(array):
+    result = []
+    sub = [array[0]]
+    i = 1
+    while i < len(array):
+        if array[i] != sub[0]:
+            result.append(sub)
+            sub = [array[i]]
+        else:
+            sub.append(array[i])
+        i += 1
+    result.append(sub)
+    return result
+
+def look_and_say(array):
+    result = []
+    groups = group_array(array)
+    for group in groups:
+        result.append([len(group), group[0]])
+    return result
