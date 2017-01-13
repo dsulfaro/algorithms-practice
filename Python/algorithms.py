@@ -329,11 +329,74 @@ class MaxStack(object):
 
     def display(self):
         if self.empty():
-            print "MaxStack is empty"
+            print ("MaxStack is empty")
         else:
             string = "Stack: "
             for el in self.store:
                 string = string + str(el) + " "
-            print string
+            print (string)
             string = "Max value: " + str(self.max())
-            print string
+            print (string)
+
+class MinMaxStack(object):
+
+    def __init__(self):
+        self.store = []
+        self.max = []
+        self.min = []
+
+    def empty(self):
+        return True if self.size() == 0 else False
+
+    def peek(self):
+        return self.store[-1] if not (self.empty()) else self.empty_message()
+
+    def push(self, val):
+        self.store.append(val)
+        if len(self.max) == 0:
+            self.max.append(val)
+            self.min.append(val)
+        else:
+            self.max.append(val) if val > self.max[-1] else self.max.append(self.max[-1])
+            self.min.append(val) if val < self.min[-1] else self.min.append(self.min[-1])
+
+    def pop(self):
+        if self.empty():
+            self.empty_message()
+        else:
+            self.max.pop()
+            self.min.pop()
+            return self.store.pop()
+
+    def max_el(self):
+        return self.max[-1] if not self.empty() else self.empty_message()
+
+    def min_el(self):
+        return self.min[-1] if not self.empty() else self.empty_message()
+
+    def size(self):
+        return len(self.store)
+
+    def empty_message(self):
+        print ("Stack is empty")
+
+class StackQueue(object):
+
+    def __init__(self):
+        self.left = MinMaxStack()
+        self.right = MinMaxStack()
+
+    def empty(self):
+        return True if self.size() == 0 else False
+
+    def size(self):
+        return len(self.left) + len(self.right)
+
+    def enqueue(self, val):
+        self.left.push(val)
+
+    def dequeue(self):
+        if self.right.size() == 0:
+            self.right.store = list(reversed(self.left.store))
+            self.left.store = []
+        return self.right.pop()
