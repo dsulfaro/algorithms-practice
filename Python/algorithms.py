@@ -221,6 +221,14 @@ def common_subsets(arr1, arr2):
     subs2 = tuple(subsets(arr2))
     return fast_intersection(subs1, subs2)
 
-a = [1, 2]
-b = [1]
-print common_subsets(a, b)
+def can_win(arr, idx, seen):
+    if idx >= len(arr) or idx < 0:
+        return False
+    if arr[idx] == 0:
+        return True
+    if idx in seen:
+        return False
+    seen[idx] = True
+    forward = idx + arr[idx]
+    backward = idx - arr[idx]
+    return can_win(arr, backward, seen) or can_win(arr, forward, seen)
