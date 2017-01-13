@@ -294,5 +294,46 @@ def sum_upon_sums(array):
         summation -= el
     return summation
 
-a = [0, 2, 3]
-print sum_upon_sums(a)
+class MaxStack(object):
+
+    def __init__(self):
+        self.store = []
+        self.max_vals = []
+
+    def push(self, val):
+        self.store.append(val)
+        if len(self.store) == 1:
+            self.max_vals.append(val)
+        else:
+            if val > self.max():
+                self.max_vals.append(val)
+            else:
+                self.max_vals.append(self.max_vals[-1])
+        return val
+
+    def pop(self):
+        self.store.pop()
+        return self.max_vals.pop()
+
+    def max(self):
+        if self.empty():
+            return "MaxStack is empty"
+        else:
+            return self.max_vals[-1]
+
+    def empty(self):
+        if len(self.store) == 0:
+            return True
+        else:
+            return False
+
+    def display(self):
+        if self.empty():
+            print "MaxStack is empty"
+        else:
+            string = "Stack: "
+            for el in self.store:
+                string = string + str(el) + " "
+            print string
+            string = "Max value: " + str(self.max())
+            print string
