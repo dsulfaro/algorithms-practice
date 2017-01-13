@@ -232,3 +232,17 @@ def can_win(arr, idx, seen):
     forward = idx + arr[idx]
     backward = idx - arr[idx]
     return can_win(arr, backward, seen) or can_win(arr, forward, seen)
+
+def strings_sort(array, length):
+    length -= 1
+    while length > -1:
+        bins = [[] for i in range(27)]
+        for word in array:
+            bins[ord(word[length]) - ord('a')].append(word)
+        array = []
+        for section in bins:
+            array.extend(section)
+        length -= 1
+    return array
+
+print strings_sort(["sat", "bad", "bat"], 3)
