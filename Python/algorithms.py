@@ -254,3 +254,14 @@ def weighted_random_index(array):
         for j in range(array[i]):
             array.append(array[i])
     return store[random.choice(array)]
+
+def move_zeros(array):
+    i = 0
+    j = len(array) - 1
+    while i < j:
+        while array[j] == 0:
+            j -= 1
+        if array[i] == 0:
+            array[i], array[j] = array[j], array[i]
+        i += 1
+    return array
