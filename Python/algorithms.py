@@ -1,5 +1,6 @@
 import string
 import random
+import pdb
 
 def digital_root(number):
     return number % 9
@@ -364,8 +365,10 @@ class MinMaxStack(object):
         if self.empty():
             self.empty_message()
         else:
-            self.max.pop()
-            self.min.pop()
+            if len(self.max) > 0:
+                self.max.pop()
+            if len(self.min) > 0:
+                self.min.pop()
             return self.store.pop()
 
     def max_el(self):
@@ -380,7 +383,7 @@ class MinMaxStack(object):
     def empty_message(self):
         print ("Stack is empty")
 
-class StackQueue(object):
+class MinMaxStackQueue(object):
 
     def __init__(self):
         self.left = MinMaxStack()
@@ -398,5 +401,46 @@ class StackQueue(object):
     def dequeue(self):
         if self.right.size() == 0:
             self.right.store = list(reversed(self.left.store))
+            self.right.max = list(reversed(self.left.max))
+            self.right.min = list(reversed(self.left.min))
+            self.left.max = []
+            self.left.min = []
             self.left.store = []
+        else:
+            self.right.max.pop()
+            self.right.min.pop()
         return self.right.pop()
+
+    def max_el(self):
+        if not self.right.empty() and not self.left.empty():
+            return max([max(self.left.store), max(self.right.store)])
+        if self.left.empty():
+            return max(self.right.store)
+        elif self.right.empty():
+            return max(self.left.store)
+
+    def min_el(self):
+        if self.left.empty():
+            return min(self.right.store)
+        elif self.right.empty():
+            return min(self.left.store)
+        else:
+            return min([min(self.left.store), min(self.right.store)])
+
+    def display(self):
+        print self.left.store
+        print self.right.store
+
+def windowed_max_range(array, w):
+    window = MinMaxStackQueue()
+    for i in range(w):
+        window.enqueue(array[i])
+    result = window.max_el() - window.min_el()
+    while w < len(array):
+        window.dequeue()
+        window.enqueue(array[w])
+        candidate = window.max_el() - window.min_el()
+        if candidate > result:
+            result = candidate
+        w += 1
+    return result
