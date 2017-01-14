@@ -490,3 +490,11 @@ def to_num(str):
             result += i
         i *= 2
     return result
+
+def rec_fac(number):
+    if number <= 1:
+        return 1
+    else:
+        return number * rec_fac(number - 1)
+
+print rec_fac(3)
