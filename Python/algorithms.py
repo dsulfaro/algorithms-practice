@@ -444,3 +444,18 @@ def windowed_max_range(array, w):
             result = candidate
         w += 1
     return result
+
+def file_list(files):
+    result = []
+    for key, val in files.iteritems():
+        if val == True:
+            result.append(key + '/')
+        else:
+            sub_files = file_list(val)
+            for f in sub_files:
+                result.append(key + '/' + f)
+    return result
+
+a = {'d' : True, 'e' : {'f' : True, 'g' : {'h' : True}}}
+b = {'c' : {'d' : True, 'e' : True}}
+print file_list(a)
