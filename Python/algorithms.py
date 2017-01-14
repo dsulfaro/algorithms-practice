@@ -467,3 +467,23 @@ def is_shuffle(string_one, string_two, string_three):
     if len (string_two) > 0 and string_two[0] == string_three[0]:
         return is_shuffle(string_one, string_two[1:], string_three[1:])
     return False
+
+def binary(num):
+    result = ""
+    i = 1
+    while (i * 2) <= num:
+        i *= 2
+    while i != 0:
+        if num >= i:
+            num -= i
+            result += "1"
+        else:
+            result += "0"
+        i /= 2
+    return result
+
+print binary(1)
+print binary(2)
+print binary(3)
+print binary(4)
+print binary(16)
