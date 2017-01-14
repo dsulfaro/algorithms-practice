@@ -482,8 +482,11 @@ def binary(num):
         i /= 2
     return result
 
-print binary(1)
-print binary(2)
-print binary(3)
-print binary(4)
-print binary(16)
+def to_num(str):
+    result = 0
+    i = 1
+    for c in str[::-1]:
+        if c == "1":
+            result += i
+        i *= 2
+    return result
