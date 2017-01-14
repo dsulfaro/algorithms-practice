@@ -671,7 +671,7 @@ end
 
 # Write a method that takes an array and returns all its permutations.
 def permutations(array)
-  return [[1]] if array.length == 1
+  return [[array]] if array.length == 1
   result = []
   prev_perms = permutations(array[0..-2])
   prev_perms.each do |perm|

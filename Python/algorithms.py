@@ -497,4 +497,16 @@ def rec_fac(number):
     else:
         return number * rec_fac(number - 1)
 
-print rec_fac(3)
+def permutations(array):
+    if len(array) == 1:
+        return [array]
+    else:
+        prev = permutations(array[1:])
+        val = array[0]
+        result = []
+        for s in prev:
+            for i in range(len(array)):
+                temp = s[:]
+                temp.insert(i, val)
+                result.append(temp)
+    return result
