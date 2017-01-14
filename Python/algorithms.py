@@ -456,6 +456,9 @@ def file_list(files):
                 result.append(key + '/' + f)
     return result
 
-a = {'d' : True, 'e' : {'f' : True, 'g' : {'h' : True}}}
-b = {'c' : {'d' : True, 'e' : True}}
-print file_list(a)
+def find_missing_number(arr1, arr2):
+    return sum(arr1) - sum(arr2)
+
+a = [1, 2, 3, 4, 5]
+b = [1, 3, 4, 5]
+print find_missing_number(a, b)
