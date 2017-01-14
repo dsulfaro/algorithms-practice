@@ -459,6 +459,11 @@ def file_list(files):
 def find_missing_number(arr1, arr2):
     return sum(arr1) - sum(arr2)
 
-a = [1, 2, 3, 4, 5]
-b = [1, 3, 4, 5]
-print find_missing_number(a, b)
+def is_shuffle(string_one, string_two, string_three):
+    if len(string_three) == 0:
+        return True
+    if len(string_one) > 0 and string_one[0] == string_three[0]:
+        return is_shuffle(string_one[1:], string_two, string_three[1:])
+    if len (string_two) > 0 and string_two[0] == string_three[0]:
+        return is_shuffle(string_one, string_two[1:], string_three[1:])
+    return False
