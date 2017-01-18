@@ -25,6 +25,9 @@ bool isUnique(string str) {
 
 void handle_mapping(map<char, int> &m, string s) {
   for (int i = 0; i < s.length(); ++i) {
+    if (s[i] == ' ') {
+      continue;
+    }
     map<char, int>::iterator it;
     it = m.find(s[i]);
     if (it == m.end()) {
@@ -63,7 +66,22 @@ string urlify(string url) {
   return result;
 }
 
-int main() {
+bool palindrome_permutation(string str) {
+  map<char, int> letters;
+  handle_mapping(letters, str);
+  bool single = false;
+  for (int i = 0; i < str.length(); ++i) {
+    if (letters[str[i]] % 2 != 0 && single) {
+      return false;
+    }
+    else if (letters[str[i]] % 2 != 0) {
+      single = true;
+    }
+  }
+  return true;
+}
 
+int main() {
+  
   return 0;
 }
