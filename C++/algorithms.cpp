@@ -1,22 +1,57 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <map>
+using namespace std;
 
-bool isUnique(std::string str) {
+// ---------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------//
+// ---------------------------Strings and Arrays------------------------------//
+// ---------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------//
+
+bool isUnique(string str) {
   // O(n^2) = double loop
   // O(n log n) = sort and see if consecutive letters are same
   // O(n) = use set
-  std::set<char> letters;
+  set<char> letters;
   for (int i = 0; i < str.length(); ++i) {
-    std::set<char>::iterator it = letters.find(str[i]);
+    set<char>::iterator it = letters.find(str[i]);
     if (it == letters.end()) { letters.insert(str[i]); }
     else { return false; }
   }
   return true;
 }
 
+void handle_mapping(map<char, int> &m, string s) {
+  for (int i = 0; i < s.length(); ++i) {
+    map<char, int>::iterator it;
+    it = m.find(s[i]);
+    if (it == m.end()) {
+      m[s[i]] = 1;
+    }
+    else {
+      m[s[i]] += 1;
+    }
+  }
+  return;
+}
+
+bool map_compare (map<char, int> const &lhs, map<char, int> const &rhs) {
+    return lhs.size() == rhs.size() && equal(lhs.begin(), lhs.end(), rhs.begin());
+}
+
+
+bool is_permutation(string s1, string s2) {
+  if (s1.length() != s2.length()) { return false; }
+  map<char, int> m1;
+  map<char, int> m2;
+  handle_mapping(m1, s1);
+  handle_mapping(m2, s2);
+  return map_compare(m1, m2);
+}
+
 int main() {
-  std::cout << isUnique("abc") << std::endl;
-  std::cout << isUnique("aba") << std::endl;
+
   return 0;
 }
