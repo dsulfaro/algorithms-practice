@@ -41,7 +41,6 @@ bool map_compare (map<char, int> const &lhs, map<char, int> const &rhs) {
     return lhs.size() == rhs.size() && equal(lhs.begin(), lhs.end(), rhs.begin());
 }
 
-
 bool is_permutation(string s1, string s2) {
   if (s1.length() != s2.length()) { return false; }
   map<char, int> m1;
@@ -49,6 +48,19 @@ bool is_permutation(string s1, string s2) {
   handle_mapping(m1, s1);
   handle_mapping(m2, s2);
   return map_compare(m1, m2);
+}
+
+string urlify(string url) {
+  string result = "";
+  for (int i = 0; i < url.length(); i++) {
+    if (url[i] == ' ') {
+      result += "%20";
+    }
+    else {
+      result += url[i];
+    }
+  }
+  return result;
 }
 
 int main() {
