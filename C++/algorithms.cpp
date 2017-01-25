@@ -81,7 +81,39 @@ bool palindrome_permutation(string str) {
   return true;
 }
 
+bool one_letter_diff(string s1, string s2) {
+  bool trigger = false;
+  for (int i = 0; i < s1.length(); ++i) {
+    if (s1[i] != s2[i]) {
+      if (trigger) { return false; }
+      else { trigger = true; }
+    }
+  }
+  return true;
+}
+
+bool extra_letter_check(string s1, string s2) {
+  if (s1.length() > s2.length()) { swap(s1, s2); }
+  string::iterator it = s1.begin();
+  string::iterator ij = s2.begin();
+  while (it != s1.end() && ij != s2.end()){
+    // if iterators don't match, increase the longer one, then they should match
+    // what about where the extra letter is at the end?
+  }
+  return true;
+}
+
+bool one_away(string s1, string s2) {
+  int diff = s1.length() - s2.length();
+  if (diff < 0) { diff *= -1; }
+  if (diff > 1) { return false; }
+  if (diff == 0) { return one_letter_diff(s1, s2); }
+  else { return extra_letter_check(s1, s2); }
+}
+
 int main() {
-  
+  string s1 = "abc";
+  string s2 = "abcd";
+  cout << one_away(s1, s2) << endl;
   return 0;
 }
