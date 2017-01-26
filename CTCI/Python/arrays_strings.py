@@ -89,5 +89,3 @@ def zero_matrix(mat):
 
 def string_rotation(s1, s2):
     return True if (s1 + s1).find(s2) != -1 else False
-
-print string_rotation("cat", "tac")
