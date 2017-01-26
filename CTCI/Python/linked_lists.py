@@ -48,6 +48,14 @@ def kth_to_last(ll, k):
         result = result.next
     return result.data
 
+def delete_from_middle(victim):
+    while victim.next != None:
+        victim.data = victim.next.data
+        if victim.next.next == None:
+            victim.next = None
+        else:
+            victim = victim.next
+
 l = LinkedList.LinkedList()
 l.push(1)
 l.push(2)
