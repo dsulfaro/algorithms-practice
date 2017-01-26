@@ -68,3 +68,21 @@ def rotate_matrix(mat):
             mat[last][last - offset] = mat[i][last]
             mat[i][last] = top
     return mat
+
+def zero_matrix(mat):
+    rows = {}
+    cols = {}
+    for i, arr in enumerate(mat):
+        for j, el in enumerate(arr):
+            if el == 0:
+                rows[i] = True
+                cols[j] = True
+    i = 0
+    while i < len(mat):
+        j = 0
+        while j < len(mat[i]):
+            if rows.has_key(i) or cols.has_key(j):
+                mat[i][j] = 0
+            j += 1
+        i += 1
+    return mat
