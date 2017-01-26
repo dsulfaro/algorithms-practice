@@ -32,4 +32,25 @@ def remove_dups_n(ll):
         new_linked_list.push(key)
     ll.head = new_linked_list.head
 
+def kth_to_last(ll, k):
+    if k < 1 or k > ll.length:
+        return "Invalid k: list not long enough"
+    if ll.head == None:
+        return "List is empty"
+    runner = ll.head
+    i = 0
+    while i != k:
+        runner = runner.next
+        i += 1
+    result = ll.head
+    while runner != None:
+        runner = runner.next
+        result = result.next
+    return result.data
+
 l = LinkedList.LinkedList()
+l.push(1)
+l.push(2)
+l.push(3)
+l.push(4)
+l.push(5)
