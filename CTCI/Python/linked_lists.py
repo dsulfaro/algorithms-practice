@@ -56,9 +56,27 @@ def delete_from_middle(victim):
         else:
             victim = victim.next
 
+def partition(ll, val):
+    ptr = ll.head
+    runner = ptr.next
+    while runner != None:
+        if ptr.data >= val:
+            while runner != None and runner.data >= val:
+                runner = runner.next
+            if runner != None:
+                ptr.data, runner.data = runner.data, ptr.data
+            else:
+                break
+        else:
+            ptr = ptr.next
+
 l = LinkedList.LinkedList()
-l.push(1)
-l.push(2)
 l.push(3)
-l.push(4)
 l.push(5)
+l.push(8)
+l.push(5)
+l.push(10)
+l.push(2)
+l.push(1)
+partition(l, 5)
+l.display()
