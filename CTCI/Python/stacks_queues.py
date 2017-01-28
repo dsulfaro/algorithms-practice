@@ -56,7 +56,26 @@ class SetOfStacks(object):
         if self.last_length() == 0:
             self.stacks.pop()
 
+    # ignored rollover system
     def popAt(self, idx):
         self.stacks[idx].pop()
         if len(self.stacks[idx]) == 0:
             del self.stacks[idx]
+
+def sort_stack(stack):
+    temp = []
+    hold = 0
+    while len(stack) != 0:
+        if len(temp) == 0:
+            temp.append(stack.pop())
+        else:
+            if stack[-1] < temp[-1]:
+                hold = stack.pop()
+                while len(temp) != 0 and temp[-1] > hold:
+                    stack.append(temp.pop())
+                temp.append(hold)
+            else:
+                temp.append(stack.pop())
+    while len(temp) != 0:
+        stack.append(temp.pop())
+    return stack
