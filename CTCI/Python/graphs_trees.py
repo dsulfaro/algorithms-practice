@@ -102,9 +102,19 @@ def list_of_depths(tree):
         current = new_current
     return result
 
+def max_depth(node):
+    if node == None:
+        return 0
+    else:
+        left = 1 + max_depth(node.left)
+        right = 1 + max_depth(node.right)
+        return max([left, right])
+
+
 b.root = b.insert(6, b.root)
-b.root = b.insert(4, b.root)
-b.root = b.insert(2, b.root)
-b.root = b.insert(5, b.root)
-b.root = b.insert(8, b.root)
-b.root = b.insert(9, b.root)
+b.insert(7, b.root)
+b.insert(8, b.root)
+b.insert(9, b.root)
+b.insert(9, b.root)
+
+print (max_depth(b.root))
