@@ -70,13 +70,46 @@ def partition(ll, val):
         else:
             ptr = ptr.next
 
-l = LinkedList.LinkedList()
-l.push(3)
-l.push(5)
-l.push(8)
-l.push(5)
-l.push(10)
-l.push(2)
-l.push(1)
-partition(l, 5)
-l.display()
+def list_to_string(l):
+    result = ""
+    ptr = l.head
+    while ptr != None:
+        result += str(ptr.data)
+        ptr = ptr.next
+    return result
+
+def list_to_int(l):
+    digit = 1
+    total = 0
+    ptr = l.head
+    while ptr != None:
+        total += ptr.data * digit
+        ptr = ptr.next
+        digit *= 10
+    return total
+
+def sum_lists_with_strings(l1, l2):
+    num1 = int(list_to_string(l1)[::-1])
+    num2 = int(list_to_string(l2)[::-1])
+    summed = str(num1 + num2)[::-1]
+    result = LinkedList.LinkedList()
+    for c in summed:
+        result.push(int(c))
+    return result
+
+def sum_lists_without_strings(l1, l2):
+    num1 = list_to_int(l1)
+    num2 = list_to_int(l2)
+    summed = num1 + num2
+    result = LinkedList.LinkedList()
+    while summed > 0:
+        result.push(summed % 10)
+        summed //= 10
+    return result
+
+
+l1 = LinkedList.LinkedList()
+l1.push(1)
+
+l2 = LinkedList.LinkedList()
+l2.push(9)
