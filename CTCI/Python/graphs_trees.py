@@ -1,5 +1,6 @@
 import types
 import importlib.machinery
+import math
 loader = importlib.machinery.SourceFileLoader('bst', './../../../datastructures/python/bst.py')
 BST = types.ModuleType(loader.name)
 handle = loader.exec_module(BST)
@@ -110,11 +111,14 @@ def max_depth(node):
         right = 1 + max_depth(node.right)
         return max([left, right])
 
+def is_balanced(tree):
+    return abs(max_depth(tree.root.left) - max_depth(tree.root.right)) <= 1
+
 
 b.root = b.insert(6, b.root)
-b.insert(7, b.root)
-b.insert(8, b.root)
-b.insert(9, b.root)
-b.insert(9, b.root)
+b.insert(4, b.root)
+b.insert(5, b.root)
+b.insert(1, b.root)
+b.insert(90, b.root)
 
-print (max_depth(b.root))
+print (is_balanced(b))
