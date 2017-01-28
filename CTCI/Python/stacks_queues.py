@@ -32,3 +32,31 @@ class FixedMultiStack(object):
 
     def size(self, stack):
         return self.sizes[stack]
+
+class SetOfStacks(object):
+
+    def __init__(self, size):
+        self.stacks = [[]]
+        self.size = size
+
+    def last_length(self):
+        return len(self.stacks[-1])
+
+    def last_stack(self):
+        return self.stacks[-1]
+
+    def push(self, val):
+        if self.last_length() == self.size:
+            self.stacks.append([val])
+        else:
+            self.last_stack().append(val)
+
+    def pop(self):
+        self.last_stack().pop()
+        if self.last_length() == 0:
+            self.stacks.pop()
+
+    def popAt(self, idx):
+        self.stacks[idx].pop()
+        if len(self.stacks[idx]) == 0:
+            del self.stacks[idx]
