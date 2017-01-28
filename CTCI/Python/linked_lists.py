@@ -149,13 +149,16 @@ def cycle_start(l):
     ptr = l.head
     loop_val = None
     # find the unique value at which the list repeats and save it into loop_val
-    while True:
+    while ptr != None:
         if values.has_key(ptr.data):
             loop_val = ptr.data
             break
         else:
             values[ptr.data] = True
             ptr = ptr.next
+    # checks to make sure the list is actually circular
+    if ptr == None:
+        return False
     # start back at the beginning and go until you find the node with that value
     ptr = l.head
     while True:
