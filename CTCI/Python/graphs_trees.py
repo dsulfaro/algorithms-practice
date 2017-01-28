@@ -68,4 +68,16 @@ gr.add_node(b)
 gr.add_node(c)
 gr.add_node(d)
 gr.add_node(e)
-print(gr.bfs(a, d))
+
+b = BST.BST()
+
+def construct_bst(tree, arr):
+    if len(arr) < 1:
+        return
+    mid = len(arr) // 2
+    if tree.root == None:
+        tree.root = tree.insert(arr[mid], tree.root)
+    else:
+        tree.insert(arr[mid], tree.root)
+    construct_bst(tree, arr[0:mid])
+    construct_bst(tree, arr[mid+1::])
