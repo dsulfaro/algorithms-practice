@@ -131,6 +131,39 @@ def is_palindrome(l):
     print (left, right)
     return left == right
 
+def intersection(l1, l2):
+    # get lengths of both
+    # if last nodes arent the same, return False
+    # else
+    # have two pointers start at each head
+    # advance the pointer of the longest list and decrement the length variable
+    # until both lengths are the same
+    # then advance both pointers at the same time and they should meet
+    return
+
+def cycle_start(l):
+    # O(n) time - O(n) space
+    # Assuming all values in linked list are unique otherwise, this would break
+    # To get around that, store their references instead, but for simplicity's sake, I'm just doing the data
+    values = {}
+    ptr = l.head
+    loop_val = None
+    # find the unique value at which the list repeats and save it into loop_val
+    while True:
+        if values.has_key(ptr.data):
+            loop_val = ptr.data
+            break
+        else:
+            values[ptr.data] = True
+            ptr = ptr.next
+    # start back at the beginning and go until you find the node with that value
+    ptr = l.head
+    while True:
+        if ptr.data == loop_val:
+            return ptr
+        else:
+            ptr = ptr.next
+
 
 l1 = LinkedList.LinkedList()
 l1.push(1)
