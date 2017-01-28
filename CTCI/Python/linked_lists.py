@@ -6,6 +6,7 @@ loader = importlib.machinery.SourceFileLoader('linked_list', './../../../datastr
 LinkedList = types.ModuleType(loader.name)
 handle = loader.exec_module(LinkedList)
 
+import math
 # O(n^2) solution
 def remove_dups_n2(ll):
     ptr = ll.head
@@ -107,9 +108,35 @@ def sum_lists_without_strings(l1, l2):
         summed //= 10
     return result
 
+def is_palindrome(l):
+    length = l.length
+    idx = 1
+    count = 1
+    left = 0
+    right = 0
+    ptr = l.head
+    while ptr != None:
+        if length % 2 != 0 and count == math.ceil(length / 2):
+            ptr = ptr.next
+            count += 1
+            continue
+        if count <= length // 2:
+            left += ptr.data * idx
+            idx += 1
+        else:
+            idx -= 1
+            right += ptr.data * idx
+        count += 1
+        ptr = ptr.next
+    print (left, right)
+    return left == right
+
 
 l1 = LinkedList.LinkedList()
 l1.push(1)
 
 l2 = LinkedList.LinkedList()
-l2.push(9)
+l2.push(1)
+l2.push(2)
+l2.push(2)
+l2.push(1)
