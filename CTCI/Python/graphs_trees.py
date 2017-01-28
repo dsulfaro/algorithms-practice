@@ -4,6 +4,10 @@ loader = importlib.machinery.SourceFileLoader('bst', './../../../datastructures/
 BST = types.ModuleType(loader.name)
 handle = loader.exec_module(BST)
 
+loader = importlib.machinery.SourceFileLoader('linked_list', './../../../datastructures/python/linked_list.py')
+LinkedList = types.ModuleType(loader.name)
+handle = loader.exec_module(LinkedList)
+
 # b = BST.BST()
 # b.root = b.insert(2, b.root)
 # b.insert(1, b.root)
@@ -81,3 +85,26 @@ def construct_bst(tree, arr):
         tree.insert(arr[mid], tree.root)
     construct_bst(tree, arr[0:mid])
     construct_bst(tree, arr[mid+1::])
+
+def list_of_depths(tree):
+    result = []
+    current = [tree.root]
+    while len(current) != 0:
+        l = LinkedList.LinkedList()
+        new_current = []
+        for el in current:
+            l.push(el.data)
+            if el.left != None:
+                new_current.append(el.left)
+            if el.right != None:
+                new_current.append(el.right)
+        result.append(l)
+        current = new_current
+    return result
+
+b.root = b.insert(6, b.root)
+b.root = b.insert(4, b.root)
+b.root = b.insert(2, b.root)
+b.root = b.insert(5, b.root)
+b.root = b.insert(8, b.root)
+b.root = b.insert(9, b.root)
