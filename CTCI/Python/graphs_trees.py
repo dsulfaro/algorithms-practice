@@ -114,6 +114,18 @@ def max_depth(node):
 def is_balanced(tree):
     return abs(max_depth(tree.root.left) - max_depth(tree.root.right)) <= 1
 
+def is_bst(node):
+    if node.left == None and node.right == None:
+        return True
+    else:
+        if (node.left != None and node.data < node.left.data) or (node.right != None and node.data > node.right.data):
+            return False
+        if mx != None and node.data > mx:
+            return False
+        if mn != None and node.data < mn:
+            return False
+        return is_bst(node.left, node.data) or is_bst(node.right, None, node.data)
+
 
 b.root = b.insert(6, b.root)
 b.insert(4, b.root)
@@ -121,4 +133,4 @@ b.insert(5, b.root)
 b.insert(1, b.root)
 b.insert(90, b.root)
 
-print (is_balanced(b))
+print (is_bst(b.root))
