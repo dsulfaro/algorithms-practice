@@ -9,22 +9,69 @@ if(typeof Algorithms === "undefined") {
 // Keep repeating until there is only one digit in the result, called the "digital root".
 // Do not use string conversion within your method.
 Algorithms.digitalRoot = function (number) {
+  return number % 9
 };
 
 // Write a function that takes a message and an increment amount and outputs the same letters shifted by that amount in the alphabet.
 // Assume lowercase and no punctuation.
 // Preserve spaces.
 Algorithms.caesarCipher = function (string, shift) {
-
+  result = ""
+  for (let i = 0; i < string.length; ++i) {
+    // console.log(String.fromCharCode((string.charCodeAt(i) + shift) % 26))
+    if (string[i] !== " ") {
+      result += (String.fromCharCode((string.charCodeAt(i) + (shift % 26))))
+    }
+    else {
+      result += " "
+    }
+  }
+  return result
 };
 
-Algorithms.getSubstrings = str => {
 
+Algorithms.getSubstrings = str => {
+  let result = []
+  let i, j
+  for (i = 0; i < str.length; ++i) {
+    for (j = i + 1; j <= str.length; ++j) {
+      result.push(str.slice(i, j))
+    }
+  }
+  return result
+}
+
+Algorithms.make_substring_matrix = function (str1, str2) {
+  let matrix = new Array(str1.length + 1)
+  let i, j
+  for (i = 0; i <= str2.length; ++i) {
+    matrix[i] = (new Array(str2.length + 1).fill(0))
+  }
+  for (i = 0; i < str1.length; ++i) {
+    for (j = 0; j < str2.length; ++j) {
+      if (str1[i] === str2[j]) {
+        matrix[i + 1][j + 1] = matrix[i][j] + 1
+      }
+      else {
+        matrix[i + 1][j + 1] = 0
+      }
+    }
+  }
+  return matrix
 }
 
 // Write a function that takes two strings and returns the lenght of the longest common substring.
-Algorithms.commonSubstrings = function (stringOne, stringTwo) {
-
+Algorithms.longestCommonSubstrings = function (stringOne, stringTwo) {
+  let matrix = Algorithms.make_substring_matrix(stringOne, stringTwo)
+  let greatest = ""
+  matrix.forEach((row, i) => {
+    row.forEach((el, j) => {
+      if (el > greatest.length) {
+        greatest = stringTwo.slice((j - el), j)
+      }
+    })
+  });
+  return greatest.length
 };
 
 // Write a function that takes an array of integers and returns their sum.

@@ -18,13 +18,13 @@ describe("caesarCipher", function() {
   });
 });
 
-describe("commonSubstrings", function() {
+describe("longestCommonSubstrings", function() {
   it("'Hello' and 'Hello World' should return 'Hello'", function() {
-    expect(Algorithms.commonSubstrings('Hello', 'Hello World')).toBe(5);
+    expect(Algorithms.longestCommonSubstrings('Hello', 'Hello World')).toBe(5);
   });
 
   it("'ABABC' and 'BABCA' should return 'BABC'", function() {
-    expect(Algorithms.commonSubstrings('ABABC', 'BABCA')).toBe(4);
+    expect(Algorithms.longestCommonSubstrings('ABABC', 'BABCA')).toBe(4);
   });
 });
 
