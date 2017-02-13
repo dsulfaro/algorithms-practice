@@ -149,7 +149,14 @@ Algorithms.lcs = function (array) {
 // Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:
 // the first two digits summed with the last two digits are equal to the middle two digits.
 Algorithms.sillyYears = function (number) {
-
+  let result = []
+  let year
+  while (result.length != 10) {
+    number += 1
+    year = number.toString()
+    if (parseInt(year.slice(0, 2)) + parseInt(year.slice(2, 4)) == parseInt(year.slice(1, 3))) { result.push(number) }
+  }
+  return result
 };
 
 // Given an array of integers, return all pairs that sum up to a specified value k.
@@ -157,22 +164,49 @@ Algorithms.sillyYears = function (number) {
 // Time complexity: O(n).
 // Return an array.
 Algorithms.pairSum = function (array, k) {
-
+  let set = new Set()
+  let result = []
+  array.forEach(el => {
+    if (set.has(k - el)) {
+      result.push([el, k - el])
+      set.delete(k - el)
+    }
+    set.add(el)
+  })
+  return result
 };
 
 // Given a matrix of integers and coordinates of a rectangular region within the matrix.
 // Find the sum of numbers falling inside the rectangle.
 // Time complexity: O(number of rows * number of columns).
 Algorithms.matrixRegionSum = function (matrix, topLeftCoords, bottomRightCoords) {
-
+  let total = 0
+  let i, j
+  for (i = topLeftCoords[0]; i <= bottomRightCoords[0]; ++i){
+    for (j = topLeftCoords[1]; j <= bottomRightCoords[1]; ++j) {
+      total += matrix[i][j]
+    }
+  }
+  return total
 };
 
 Algorithms.merge = function (left, right) {
-
+  let result = []
+  while (left.length > 0 && right.length > 0) {
+    if (left[0] < right[0]) { result.push(left.shift()) }
+    else { result.push(right.shift()) }
+  }
+  result = result.concat(left)
+  result = result.concat(right)
+  return result
 };
 
 Algorithms.merge_sort = array => {
-
+  if (array.length <= 1) { return array }
+  let mid = Math.floor(array.length / 2)
+  let left = array.slice(0, mid)
+  let right = array.slice(mid, array.length)
+  return Algorithms.merge(Algorithms.merge_sort(left), Algorithms.merge_sort(right))
 };
 
 Algorithms.binary_search = (array, target) => {
