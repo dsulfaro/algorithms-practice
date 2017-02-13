@@ -77,18 +77,27 @@ Algorithms.longestCommonSubstrings = function (stringOne, stringTwo) {
 // Write a function that takes an array of integers and returns their sum.
 // Use recursion.
 Algorithms.sumRec = function (numbers) {
-
+  if (numbers.length === 1) { return numbers[0] }
+  return numbers[0] + Algorithms.sumRec(numbers.slice(1))
 };
 
 // Write a function which returns the first n elements from the fibonnacci sequence, given n.
 Algorithms.fibs = function (number) {
-
+  if (number === 1) { return [0] }
+  if (number === 2) { return [0, 1] }
+  let prev_fibs = Algorithms.fibs(number - 1)
+  let len = prev_fibs.length
+  let new_fib = prev_fibs[len - 1] + prev_fibs[len - 2]
+  prev_fibs.push(new_fib)
+  return prev_fibs
 };
 
 // Write a function that takes a string and returns true if it's a palindrome, false if it's not.
 // Your solution should take less time and memory than rebuilding the string backward and comparing the two.
 Algorithms.isPalindrome = function (string) {
-
+  if (string.length <= 1) { return true }
+  if (string[0] !== string[string.length - 1]) { return false }
+  return Algorithms.isPalindrome(string.slice(1, string.length - 1))
 };
 
 // Implement the Folding Cipher.
