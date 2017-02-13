@@ -210,15 +210,51 @@ Algorithms.merge_sort = array => {
 };
 
 Algorithms.binary_search = (array, target) => {
-
+  if (array.length === 0) {
+    if (array[0] === target) { return 0 }
+    else { return null }
+  }
+  let mid = Math.floor(array.length / 2)
+  let left = array.slice(0, mid)
+  let right = array.slice(mid + 1, array.length)
+  if (target < array[mid]) { return Algorithms.binary_search(left, target) }
+  else if (target === array[mid]) { return mid }
+  else {
+    let res = Algorithms.binary_search(right, target)
+    if (res === null) { return null }
+    else { return 1 + res + mid }
+  }
 };
 
 Algorithms.productify = array => {
-
+  let result = new Array(array.length)
+  result = result.fill(1)
+  let p1 = 1
+  let p2 = 1
+  let i, j
+  for (i = 0; i < array.length; ++i) {
+    result[i] *= p1
+    p1 *= array[i]
+  }
+  for (j = array.length - 1; j >= 0; --j) {
+    result[j] *= p2
+    p2 *= array[j]
+  }
+  return result
 };
 
 Algorithms.subsets = array => {
-
+  if (array.length === 0) { return [[]] }
+  let prev = Algorithms.subsets(array.slice(0, array.length - 1))
+  let result = []
+  let n
+  prev.forEach(el => {
+    result.push(el)
+    n = Array.from(el)
+    n.push(array[array.length - 1])
+    result.push(n)
+  })
+  return result
 };
 
 

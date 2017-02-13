@@ -175,6 +175,7 @@ describe("binary_search", function() {
   it("handles a case where the number isn't there", function() {
     expect(Algorithms.binary_search(array, 1000)).toBe(null);
   });
+});
 
 describe("productify", function() {
   let array = [1, 2, 3, 4];
@@ -194,8 +195,6 @@ describe("subsets", function() {
   });
   it("correctly returns subsets", function() {
     let array = [1, 2];
-    expect(Algorithms.subsets(array)).toEqual([], [1], [2], [1, 2]);
+    expect(Algorithms.subsets(array)).toEqual([[], [2], [1], [1, 2]]);
   });
-});
-
 });
