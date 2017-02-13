@@ -119,7 +119,16 @@ Algorithms.foldingCipher = function (string) {
 
 // Write a method that finds all the unique substrings for a word.
 Algorithms.uniqSubs = function (string) {
-
+  let result = new Set()
+  let i, j
+  let sub = ""
+  for (i = 0; i < string.length; ++i) {
+    for (j = i + 1; j <= string.length; ++j) {
+      sub = string.slice(i, j)
+      result.add(sub)
+    }
+  }
+  return Array.from(result)
 };
 
 
