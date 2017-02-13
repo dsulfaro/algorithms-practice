@@ -104,7 +104,17 @@ Algorithms.isPalindrome = function (string) {
 // It folds the alphabet in half and uses the adjacent letter.
 // a <=> z, b <=> y, c <=> x, m <=> n.
 Algorithms.foldingCipher = function (string) {
-
+  let alphabet = "abcdefghijklmnopqrstuvwxyz".split("")
+  let result = ""
+  let i, char, idx, new_index
+  let a = 'a'.charCodeAt(0)
+  for (i = 0; i < string.length; ++i) {
+    char = alphabet.indexOf(string[i])
+    idx = alphabet.indexOf(string[i])
+    new_index = ((idx + 25) - (idx * 2))
+    result += String.fromCharCode(new_index + a)
+  }
+  return result
 };
 
 // Write a method that finds all the unique substrings for a word.
