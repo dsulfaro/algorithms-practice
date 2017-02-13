@@ -136,7 +136,14 @@ Algorithms.uniqSubs = function (string) {
 // You can solve this trivially in O(n**2) time by considering all subarrays.
 // Try to solve it in O(n) time with O(1) memory.
 Algorithms.lcs = function (array) {
-
+  let max = 0
+  let curr = 0
+  array.forEach(el => {
+    curr += el
+    if (curr > max) { max = curr }
+    if (curr < 0) { curr = 0}
+  })
+  return max
 };
 
 // Write a function that takes a year (four digit integer) and returns an array with the 10 closest subsequent years that meet the following condition:
