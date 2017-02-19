@@ -777,7 +777,18 @@ def arithmetic_progression(arr)
   true
 end
 
-a1 =  [2,4,6,10]
-a2 =  [2 , 3 , 6 , 1 , 2]
-a3 =  [3 , 2 , 4 , 5 , 6]
-p arithmetic_progression(a1)
+def two_equal_subarrays(arr)
+  sum = arr.inject(:+)
+  left = 0
+  arr.each_with_index do |x, i|
+    left += x
+    right = sum - left
+    if (left * (arr.length - i - 1) == (right * (i + 1))) && (right != 0) && (left != 0)
+     return true
+    end
+  end
+  false
+end
+
+a = [1, 5, 7, 2, 0]
+p two_equal_subarrays(a)
