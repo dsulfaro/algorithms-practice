@@ -715,3 +715,16 @@ def three_way_partition(arr, a, b)
   end
   arr
 end
+
+def local_min(arr)
+  i = arr.length / 2
+  if arr.length == 2
+    return arr[0] > arr[1] ? 1 : 0
+  end
+  return i if arr[i] < arr[i + 1] && arr[i] < arr[i - 1]
+  if arr[i] > arr[i - 1]
+    return local_min(arr.take(i + 1))
+  else
+    return i + local_min(arr.drop(i))
+  end
+end
