@@ -744,3 +744,21 @@ def index_pairs(arr)
   end
   result
 end
+
+def triple_array_sum(a,b,c,target)
+  hash = {}
+  a.each do |x|
+    hash[x] = true
+  end
+  b.each do |y|
+    c.each do |z|
+      return true if hash[target - (y + z)]
+    end
+  end
+  false
+end
+
+a1 =  [1 , 2 , 3 , 4 , 5]
+a2 =  [2 , 3 , 6 , 1 , 2]
+a3 =  [3 , 2 , 4 , 5 , 6]
+p triple_array_sum(a1, a2, a3, 9)
