@@ -691,5 +691,27 @@ def array_dups1(arr)
   result
 end
 
-a = [1,2,1,2]
-p array_dups1(a)
+def sum_prod_of_subsets(arr)
+  result = 1
+  arr.each_index { |x| result *= arr[x] + 1 }
+  result - 1
+end
+
+def three_way_partition(arr, a, b)
+  start = 0
+  back = arr.size - 1
+  i = 0
+  while i <= back
+    if arr[i] < a
+      arr[i], arr[start] = arr[start], arr[i]
+      start += 1
+      i += 1
+    elsif arr[i] > b
+      arr[i], arr[back] = arr[back], arr[i]
+      back -= 1
+    else
+      i += 1
+    end
+  end
+  arr
+end
