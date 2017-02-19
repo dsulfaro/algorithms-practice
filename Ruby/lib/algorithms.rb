@@ -728,3 +728,19 @@ def local_min(arr)
     return i + local_min(arr.drop(i))
   end
 end
+
+def fact(n)
+  return 1 if n <= 1
+  return n * fact(n-1)
+end
+
+def index_pairs(arr)
+  hash = Hash.new(0)
+  arr.each { |x| hash[x] += 1 }
+  result = 0
+  hash.each do |k, v|
+    next if v <= 1
+    result += (fact(v) / (fact(2) * fact(v - 2)))
+  end
+  result
+end
