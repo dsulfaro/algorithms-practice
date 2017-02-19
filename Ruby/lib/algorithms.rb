@@ -758,7 +758,26 @@ def triple_array_sum(a,b,c,target)
   false
 end
 
-a1 =  [1 , 2 , 3 , 4 , 5]
+def arithmetic_progression(arr)
+  small1 = 1000000
+  small2 = 1000000
+  arr.each { |x| small1 = x if x < small1 }
+  arr.each { |x| small2 = x if (x < small2 && x != small1) }
+  diff = small2 - small1
+  hash = {}
+  arr.each do |x|
+    return false if hash[x]
+    hash[x] = true
+  end
+  start = small1
+  until start >= arr.max
+    start += diff
+    return false unless hash[start]
+  end
+  true
+end
+
+a1 =  [2,4,6,10]
 a2 =  [2 , 3 , 6 , 1 , 2]
 a3 =  [3 , 2 , 4 , 5 , 6]
-p triple_array_sum(a1, a2, a3, 9)
+p arithmetic_progression(a1)
