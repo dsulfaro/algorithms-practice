@@ -683,3 +683,13 @@ def permutations(array)
   end
   result
 end
+
+def array_dups1(arr)
+  result = []
+  arr.each_index { |i| arr[(arr[i] % arr.size)] += arr.size }
+  arr.each_with_index { |el, i| result << i if el / arr.size > 1 }
+  result
+end
+
+a = [1,2,1,2]
+p array_dups1(a)
