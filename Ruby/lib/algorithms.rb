@@ -875,5 +875,9 @@ def sumsets(arr, queries)
   end
 end
 
-a = [1, 2, 3]
-sumsets(a, [5, 3, 8])
+def twos_compliment(bi)
+  xor = "1" * bi.size
+  comp = bi.to_i(2) ^ xor.to_i(2)
+  comp += 1
+  comp.to_s(2)
+end
