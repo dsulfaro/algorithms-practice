@@ -857,3 +857,23 @@ def arr_cycle(arr, idx, seen)
   nindex = (idx + arr[idx]) % arr.size
   arr_cycle(arr, nindex, seen)
 end
+
+def sumsets(arr, queries)
+  bits = "0" * (arr.inject(:+) + 1)
+  bits[0] = "1"
+  arr.each do |el|
+    shifted_bits = bits.to_i(2) << el
+    new_bits = bits.to_i(2) | shifted_bits.to_i
+    bits = new_bits.to_s(2)
+  end
+  queries.each do |q|
+    if bits[q] == "1"
+      puts "Yes"
+    else
+      puts "No"
+    end
+  end
+end
+
+a = [1, 2, 3]
+sumsets(a, [5, 3, 8])
