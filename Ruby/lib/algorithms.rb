@@ -881,3 +881,31 @@ def twos_compliment(bi)
   comp += 1
   comp.to_s(2)
 end
+
+def gen_bin_util(result, curr, k)
+  if k == 0
+    result << curr
+    return
+  end
+  if curr.length == 0
+    gen_bin_util(result, "1", k - 1)
+    gen_bin_util(result, "0", k - 1)
+  else
+    if curr[-1] != "1"
+      gen_bin_util(result, curr + "1", k - 1)
+    end
+      gen_bin_util(result, curr + "0", k - 1)
+  end
+end
+
+def gen_bin_without_ones(k)
+  result = []
+  gen_bin_util(result, "", k)
+  result
+end
+
+def mat_rot(mat)
+  master = (mat[0] * 2).join
+  mat.each { |row| return false unless master.include?(row.join) }
+  true
+end
