@@ -790,5 +790,67 @@ def two_equal_subarrays(arr)
   false
 end
 
-a = [1, 5, 7, 2, 0]
-p two_equal_subarrays(a)
+def min_pair_product_sum(arr)
+  arr.sort!
+  result = []
+  i = 0
+  j = arr.size - 1
+  while i < j
+    result << arr[j]
+    result << arr[i]
+    i += 1
+    j -= 1
+  end
+  arr = result
+end
+
+def dot_prod(a, b)
+  dp = Array.new(b.size + 1) { Array.new(a.size, 0) }
+  i = 1
+  while i <= b.size
+    j = i
+    while j <= a.size
+      dp[i][j] = [dp[i-1][j-1] + (a[j-1] * b[i-1]), dp[i][j-1]].max
+      j += 1
+    end
+    i += 1
+  end
+  dp[b.size][a.size]
+end
+
+def summ(n)
+  return 1 if n == 1
+  n + summ(n-1)
+end
+
+def subsets_max(arr, k)
+  x = arr.count{ |el| el <= k}
+  summ(arr.size) - summ(x)
+end
+
+def range_occurrences(l, r)
+  arr = Array.new(20, 0)
+  i = 0
+  while i < l.size
+    arr[l[i]] += 1
+    arr[r[i] + 1] -= 1
+    i += 1
+  end
+  sum = arr[0]
+  idx = 0
+  i = 1
+  while i < arr.length
+    arr[i] += arr[i - 1]
+    if sum < arr[i]
+      sum = arr[i]
+      idx = i
+    end
+    i += 1
+  end
+  idx
+end
+
+l = [1,4,3,2]
+r = [15,8,5,4]
+
+puts range_occurrences(l, r)
