@@ -850,7 +850,10 @@ def range_occurrences(l, r)
   idx
 end
 
-l = [1,4,3,2]
-r = [15,8,5,4]
-
-puts range_occurrences(l, r)
+def arr_cycle(arr, idx, seen)
+  return false if arr[idx] % arr.size == 0 && idx != 0
+  return true if seen[idx]
+  seen[idx] = true
+  nindex = (idx + arr[idx]) % arr.size
+  arr_cycle(arr, nindex, seen)
+end
