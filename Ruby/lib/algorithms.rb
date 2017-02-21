@@ -909,3 +909,74 @@ def mat_rot(mat)
   mat.each { |row| return false unless master.include?(row.join) }
   true
 end
+
+def sub_replace?(str, k)
+  return false unless str.length % k == 0
+  store = Hash.new(0)
+  str.scan(/.{#{k}}/).each { |s| store[s] += 1 }
+  store.keys.length == 2 && store.values.include?(1)
+end
+
+def make_palindrome(str)
+  subs = uniq_subs(str).select{ |x| x == x.reverse }
+  str.length - subs.max_by(&:length).length
+end
+
+class String
+  def my_to_i
+    result = 0
+    tens = 1
+    self.reverse.each_char do |c|
+      next unless c.ord.between?(48, 57)
+      x = (c.ord - '0'.ord) * tens
+      if x == 0
+        result *= 10
+      else
+        result += x
+      end
+      tens *= 10
+    end
+    result *= -1 if self[0] == "-"
+    result
+  end
+
+  def urlify
+    x = "%20"
+    result = ""
+    self.each_char { |c| result << ((c == " ") ? x : c) }
+    result
+  end
+
+end
+
+def rev_sent(str)
+  words = []
+  word = ""
+  str.each_char do |c|
+    if c == " "
+      words << word
+      word = ""
+    else
+      word += c
+    end
+  end
+  words << word
+  result = ""
+  i = words.length - 1
+  while i >= 0
+    result += words[i]
+    result += " " unless i == 0
+    i -= 1
+  end
+  result
+end
+
+def rem_dups(str)
+  hash = Hash.new(false)
+  result = ""
+  str.each_char do |c|
+    result << c unless hash[c]
+    hash[c] = true
+  end
+  result
+end
