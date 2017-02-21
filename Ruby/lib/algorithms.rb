@@ -980,3 +980,59 @@ def rem_dups(str)
   end
   result
 end
+
+def partition(arr, left, right)
+  x = arr[right]
+  i = left
+  arr.each_with_index do |el, j|
+    next if j < left
+    break if j == right
+    if el <= x
+      arr[i], arr[j] = arr[j], arr[i]
+      i += 1
+    end
+  end
+  arr[i], arr[right] = arr[right], arr[i]
+  return i
+end
+
+def kth_smallest_on2(arr, left=0, right=arr.size-1, k)
+  if k > 0 && k <= right - left + 1
+    pos = partition(arr, left, right)
+    if pos - left == k - 1
+      return arr[pos]
+    end
+    if pos - left > k - 1
+      return kth_smallest_on2(arr, left, pos-1, k)
+    end
+    return kth_smallest_on2(arr, pos+1, right, k-pos+left-1)
+  end
+  return -1
+end
+
+def first_repeat(arr)
+  hash = {}
+  arr.each_with_index do |el, i|
+    hash[el] = [] unless hash[el]
+    hash[el] << i
+  end
+  repeats = hash.select { |k, v| v.length > 1 }
+  return nil if repeats.empty?
+  repeats.first[0]
+end
+
+def first_non_repeat(arr)
+  hash = Hash.new(0)
+  arr.each_with_index { |el, i| hash[el] += 1 }
+  hash.each { |k, v| return k if v == 1}
+end
+
+def smallest_integer(arr)
+  result = 1
+  i = 0
+  while i < arr.size && arr[i] <= result
+    result += arr[i]
+    i += 1
+  end
+  result
+end
