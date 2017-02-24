@@ -1036,3 +1036,34 @@ def smallest_integer(arr)
   end
   result
 end
+
+def move_negatives(arr)
+  i = 0
+  j = arr.size - 1
+  while i < j
+    if arr[i] < 0
+      i += 1
+    elsif arr[j] < 0
+      arr[i], arr[j] = arr[j], arr[i]
+      i += 1
+      j -= 1
+    else
+      j -= 1
+    end
+  end
+  arr
+end
+
+def subarray_zero(arr)
+  set = []
+  curr = 0
+  arr.each do |el|
+    curr += el
+    return true if set.include?(curr) || curr == 0
+    set << curr
+  end
+  false
+end
+
+a = [-3, 2, 3, 1, 6]
+p subarray_zero(a)
